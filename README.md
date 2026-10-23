@@ -21,6 +21,28 @@ python analysis.py
 
 Results are written to `results.json` (and `figures/f1_comparison.png`).
 
+## Results (latest run)
+
+On the public UCI Adult income dataset (income >50K as proxy positive class), a standard logistic-regression classifier reached 66% F1 on the positive class at threshold 0.5, while a class-balanced, calibrated LightGBM reached 72% on the same held-out test set.
+
+| Metric | Value |
+|---|---|
+| baseline_score | 0.6596 |
+| improved_score | 0.7203 |
+| improvement | 0.06065 |
+| baseline_score_std | 0 |
+| improved_score_std | 0.0001656 |
+| baseline_f1 | 0.6596 |
+| improved_f1 | 0.7203 |
+| baseline_precision | 0.7323 |
+| improved_precision | 0.7858 |
+| baseline_recall | 0.6001 |
+| improved_recall | 0.6648 |
+
+Run on 2026-10-23. Full output: [results.json](results.json) · [run.log](run.log)
+
+Notes: Proxy experiment: Adult income is not social-media outbreak data and the positive class is ~25%, not truly rare. Only 3 seeds for the improved model; baseline is deterministic. Per-alert feature attributions were not implemented. Last best LightGBM params: {'clf__num_leaves': 63, 'clf__n_estimators': 400, 'clf__min_child_samples': 20, 'clf__learning_rate': 0.03}. Runtime 69s.
+
 ## Reference
 
 This project is motivated by the following paper:
